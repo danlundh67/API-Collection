@@ -1,0 +1,59 @@
+#!/usr/bin/env python
+
+# Import library for fetching Elspot data
+from nordpool import elspot, elbas
+from pprint import pprint
+
+# Initialize class for fetching Elspot prices
+prices_spot = elspot.Prices()
+
+# Initialize class for fetching Elsbas prices
+prices_bas = elbas.Prices()
+
+# Fetch hourly Elspot prices for Finland and print the resulting dictionary
+#pprint(prices_spot.hourly(areas=['SE3']))
+
+Dictionary=prices_spot.hourly(areas=['SE3'])
+ae1=Dictionary['areas']
+ae2=ae1['SE3']
+ae3=ae2['values']
+
+min=float(ae2['Min'])
+ave=float(ae2['Average'])
+
+# genomsnittlig forbrukning timme kwh
+
+forb=20.000
+
+kost=0.000
+
+antal=0
+
+#print(ae3)
+
+for x in range(len(ae3)):
+    a1=ae3[x]
+    a2=a1['start']
+   
+    a3=a1['end']
+    
+    a4=a1['value']
+    sdd=a2.strftime("%d")
+    sdh=a2.strftime("%H")
+    edd=a3.strftime("%d")
+    edh=a3.strftime("%H")
+    if ((2*min)>=a4) :
+        print(sdd,sdh,edd,edh, a4,"*")
+        kost=kost+a4*forb
+        antal=antal+1
+    else :
+        print(sdd,sdh,edd,edh, a4)
+
+
+print('--------------------------------------------------')
+print('kostnad minvarden :',kost)
+print('kostnad genomsnitt :', ave*antal*forb)
+
+# Fetch hourly Elbas prices for Finland and print the resulting dictionary
+#pprint(prices_bas.hourly(areas=['SE3']))
+
