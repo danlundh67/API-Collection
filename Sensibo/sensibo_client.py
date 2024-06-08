@@ -1,6 +1,11 @@
 import requests
 import json
 
+# 
+# 
+# all script with 
+# sensibo_client.py 'your apikey' 'your device name'
+
 _SERVER = 'https://home.sensibo.com/api/v2'
 
 class SensiboClientAPI(object):
@@ -56,7 +61,7 @@ if __name__ == "__main__":
     uid = devices[args.deviceName]
     ac_state = client.pod_ac_state(uid)
     ac_temp=client.pod_measurement(uid)
-    ac_timer = client.pod_ac_timer(uid)
+    #ac_timer = client.pod_ac_timer(uid)
     
     print ("-" * 10, "AC State of %s" % args.deviceName, "-" * 10)
     print(ac_state)
