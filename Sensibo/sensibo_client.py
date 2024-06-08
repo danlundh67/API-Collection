@@ -55,16 +55,20 @@ if __name__ == "__main__":
 
     client = SensiboClientAPI(args.apikey)
     devices = client.devices()
-    print("----------", "devices", "----------")
-    print(devices)
+    # print("----------", "devices", "----------")
+    # print(devices)
 
     uid = devices[args.deviceName]
     ac_state = client.pod_ac_state(uid)
     ac_temp=client.pod_measurement(uid)
     #ac_timer = client.pod_ac_timer(uid)
-    
+    print("-"*30)
     print ("-" * 10, "AC State of %s" % args.deviceName, "-" * 10)
-    print(ac_state)
-    print(ac_temp)
+    print("-"*30)
+    print(f"time: {ac_state['timestamp']}  on:  {ac_state['on']}")
+    print(f" mode: {ac_state['mode']} set temp: {ac_state['targetTemperature']} {ac_state['temperatureUnit']}")
+    print(f"fan: {ac_state['fanLevel']}  on:  {ac_state['swing']}")
+    temp=ac_temp[0]
+    print(f"percieved tem: {temp['temperature']}")
 
     # client.pod_change_ac_state(uid, ac_state, "on", not ac_state['on'])
