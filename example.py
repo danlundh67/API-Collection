@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+# test script
 
 # Import library for fetching Elspot data
 from nordpool import elspot, elbas
@@ -12,8 +12,9 @@ prices_spot = elspot.Prices()
 # Initialize class for fetching Elsbas prices
 prices_bas = elbas.Prices()
 
+
 # Fetch hourly Elspot prices for Finland and print the resulting dictionary
-#pprint(prices_spot.hourly(areas=['SE3']))
+# pprint(prices_spot.hourly(areas=['SE3']))
 
 Dictionary=prices_spot.hourly(areas=['SE3'])
 ae1=Dictionary['areas']
@@ -52,6 +53,7 @@ for x in range(len(ae3)):
     sdh=a2.strftime("%H")
     edd=a3.strftime("%d")
     edh=a3.strftime("%H")
+    
     y.append(a4)
     
     if ((2*min)>=a4) :

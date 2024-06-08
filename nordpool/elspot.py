@@ -146,7 +146,7 @@ class Prices(Base):
         return self.fetch(self.YEARLY, end_date, areas)
 
 
-class AioPrices(Prices):
+class ioPrices(Prices):
     def __init__(self, currency, client):
 
         super().__init__(currency)
